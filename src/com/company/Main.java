@@ -13,18 +13,19 @@ public class Main {
        Tree<Integer> tre = new BinarySearchTree();
        tre.add(12);
         tre.add(11);
+        tre.add(1);
         tre.add(11);
         tre.add(78);
         tre.add(19);
         tre.print();
-        System.out.println( tre.search(19));
+        System.out.println( tre.search(1));
 
         Tree<User> obj=new BinarySearchTree<>();
 
         obj.add(new User("mo",1));
+        obj.add(new User("mo12",12));
         obj.add(new User("mo",1));
 
-        obj.add(new User("mo12",12));
         obj.add(new User("a",5));
 
 

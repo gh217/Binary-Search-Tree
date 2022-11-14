@@ -11,10 +11,11 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T>  {
              root =new Node(value);
             return true;
         }
-        return  addvalue(value,root);
+        return  addValueIterative(value,root);
     }
 
     private boolean addvalue(T value, Node node){
+
 
         if(value.compareTo(node.value)<0){
             if(node.left==null){
@@ -32,9 +33,31 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T>  {
             return addvalue(value,node.right);
         }
         return false;
-
     }
 
+    private boolean addValueIterative(T value, Node node){
+        while (node!=null){
+
+            if(value.compareTo(node.value)==0)return false;
+
+            if(value.compareTo(node.value)<0){
+                if(node.left==null){
+                    node.left=new Node(value);
+                    return true;
+                }
+                node=node.left;
+            }
+
+            if(value.compareTo(node.value)>0){
+                if(node.right==null){
+                    node.right=new Node(value);
+                    return true;
+                }
+                node=node.right;
+            }
+        }
+        return false;
+    }
 
     @Override
     public void print(){
@@ -50,9 +73,10 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T>  {
         print(node.right);
     }
 
+
     @Override
     public boolean search(T value){
-        return  search( value ,root);
+        return  searchR( value ,root);
     }
 
     public boolean search(T value , Node node){
@@ -64,6 +88,18 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T>  {
         if(value.compareTo(node.value)<0) return search( value, node.left);
         if(value.compareTo(node.value)>0) return search( value, node.right);
 
+        return false;
+    }
+
+    public boolean searchR(T value , Node node){
+
+       while (node!=null){
+           if(value.compareTo(node.value)==0)return true;
+
+           if(value.compareTo(node.value)<0) node=node.left;
+
+           if(value.compareTo(node.value)>0) node=node.right;
+       }
         return false;
     }
 
